@@ -30,7 +30,7 @@ body{
 
 .envoltorio {
     width: 65vmin;
-    height: 70vmin;
+    height: 80vmin;
     display: flex;
     overflow: hidden;
     flex-direction: column;
@@ -63,9 +63,7 @@ body{
 }
 
 
-.oso{
-    border-radius: 50%;
-    background-color: white;
+.topo{
     cursor: pointer;
 }
 
@@ -137,4 +135,9 @@ body{
 .desaparece{
     animation:eliminar 0.2s;
     animation-fill-mode: forwards;
+}
+
+img{
+   height:100%;
+   width:100%;
 }
