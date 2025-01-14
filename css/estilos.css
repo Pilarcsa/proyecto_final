@@ -72,36 +72,49 @@ body{
    animation-fill-mode: forwards;
     /* pointer-events: none; ---> para juegos y q7ue no sea clickable*/
 }
-.timer{
+.tiempo{
     width: 100%;
     background-color: #fafafab6;
     display: flex;
     height: 10%;
 }
-.timer div{
+.tiempo div{
+    height: 100%;
     background-color: rgb(255, 0, 0);
     margin: 0 10px;
 }
+
+.contenedor{
+    width: 600px;
+    border:5px solid white;
+    padding: 15PX 15px 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .modal{
     font-family:monospace;
     width: 100%;
     height: 100vh;
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(2.5em);
     display: flex;
     flex-direction: column;
     justify-content:space-evenly;
     align-items: center;
+    
  
 }
 .modal button {
-    font-family:monospace;
+    font-family:sans-serif;
     font-size: 2.5em;
     padding: 2px 20px;
-    background-color: white ;
-    border: 2px solid grey;
     border-radius: 12px;
     cursor: pointer;
+    border: 3px solid #fafafa10;
+    background: #fafafa10;
+    box-shadow: -11px 12px 20px 0px rgba(0, 0, 0, 0.37);
+    color: white;
 }
 .modal p {
     display: block;
@@ -109,28 +122,15 @@ body{
     font-family:monospace;
     color: white;
     font-size: 4.1em;
-    border: 4px dashed rgb(255, 255, 255);
     border-radius: 12px;
 }
 
 @keyframes eliminar{
-    0%{ /* entra en examen*/
-        transform: scale(1);
+    0%{
         opacity:1;
-    }
-    5%{ 
-        transform: scale(1.4);
-        opacity:1;
-    }
-    99%{ 
-        transform: scale(0.001);
-        opacity:1;
-    }
-    100%{ 
-        transform: scale(0.001);
+    }100%{ 
         opacity:0;
     }
-
 }
 .desaparece{
     animation:eliminar 0.2s;
