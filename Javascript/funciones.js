@@ -1,82 +1,160 @@
+/*const cursor = document.querySelector(".cursor");
+
+document.addEventListener("mousemove", (m) => {
+  cursor.style.left = m.pageX + 'px';
+  cursor.style.left = m.pageY + 'px';
+
+});
+
+document.addEventListener("mousedown", () => {
+  cursor.classList.add("active");
+});
+
+document.addEventListener("mouseup", () => {
+  cursor.classList.add("active");
+
+});//visto en el tutorial https://www.youtube.com/watch?v=0v9qwDueocI
+*/
+
+
+
 const tablero = document.querySelector(".tablero-juego");
+
 const elemPuntuacion = document.querySelector(".puntaje");
 const elemPuntuacionMaxima = document.querySelector(".puntaje-alto");
-const modal = document.querySelector(".modal");
+const elemVidas = document.querySelector(".vidas");
+
+const quitarModal = document.getElementById("quitarModal");
 const botonModal = document.querySelector(".modal button");
 const textoModal = document.querySelector (".modal p");
-const contTiempo = document.querySelector (".tiempo");
 
-let tiempoInicial =  59;
-let tiempo = null;
-let gameOver = false;
+const divCuentaAtras = document.getElementById("#divCuentaAtras"); 
+
+let gameOver = true;
+
 let topoX, topoY;
-let falsotopoX, falsotopoY;
+let Topox2X, Topox2Y;
 let bombaX,bombaY;
-
-
-
 
 let setIntervalId;
 let puntuacion = 0;
+let vidas = 3;
 
  let puntuacionMaxima = localStorage.getItem("puntaje-alto") || 0;
  elemPuntuacionMaxima.innerHTML = `High Score: ${puntuacionMaxima}`;
- 
+
+ puntuacionMaxima = puntuacion >= puntuacionMaxima ? puntuacion : puntuacionMaxima;
+        localStorage.setItem("puntaje-alto", puntuacionMaxima);
+        elemPuntuacionMaxima.innerHTML = `High Score: ${puntuacionMaxima}`;//esto lo reutilizé de un tutorial del juego snake
+
 
 const topoPosicion = () => {
-    do{   topoX= Math.floor ( Math.random() *10) +1;
-            topoY= Math.floor ( Math.random() *10) +1;
+    do{   topoX= Math.floor ( Math.random() *4) +1;
+            topoY= Math.floor ( Math.random() *4) +1;
     }while 
         (topoX === bombaX && topoY === bombaY)//el do y while lo he mirado en www3school y ChatGpt contrastando ambos contenidos
-        (topoX === falsotopoX && topoY === falsotopoX);//la sintaxis de este código se me escapaba a lo que habiamos dado en clase por ello lo recogí de Chat gpt 
+        (topoX === Topox2X && topoY === Topox2X);//la sintaxis de este código se me escapaba a lo que habiamos dado en clase por ello lo recogí de Chat gpt 
 };
 
-const falsotopoPosicion = () => {
-        do{ falsotopoX= Math.floor ( Math.random() *10) +1;
-        falsotopoY= Math.floor ( Math.random() *10) +1;
+const Topox2Posición = () => {
+        do{ Topox2X= Math.floor ( Math.random() *4) +1;
+        Topox2Y= Math.floor ( Math.random() *4) +1;
         }while 
-        (falsotopoX === bombaX && falsotopoY === bombaY)
-        (falsotopoX === topoX && falsotopoY === topoY);
+        (Topox2X === bombaX && Topox2Y  === bombaY)
+        (Topox2X === topoX && Topox2Y === topoY);
 };
 
 const bombaPosicion = () => {
-        bombaX= Math.floor ( Math.random() *10) +1;
-        bombaY= Math.floor ( Math.random() *10) +1;
+  do{ bombaX= Math.floor ( Math.random() *4) +1;
+    bombaY= Math.floor ( Math.random() *4) +1;
+   }while
+    (bombaX === topoX && bombaY === topoY)
+    (bombaX === Topox2X && bombaY === Topox2Y);
+
 };
 
 
+//modal de perder
 
-const gameOverModal = () => {
-    clearInterval(setIntervalId);
-    textoModal.innerText = "perdí";
-    console.log("....perdí =(");
-    modal;
-    location.reload();
+ gameOverModal = () => {
+  botonModal();
+  textoModal.innerText = `Puntos totales: ${puntuacionMaxima}`;
+  clearInterval(setIntervalId); 
 }
-if(gameOver){gameOverModal()};
-
-//inicio del tiempo y modales
 
 
+//inicio del tiempo
 
-//inicio del juego
+function inicioContador() {
+  const divCuentaAtras = document.getElementById("divCuentaAtras");
+
+  divCuentaAtras.style.animation = "reducirBarra 5s linear forwards";
+
+  divCuentaAtras.addEventListener("animationend", () => {
+    gameOver = true; 
+    gameOverModal(); 
+  });
+}
 
 const inicio = () => {
+
+    gameOver = false;
+
+    inicioContador();
+
+    const imgtopo = "img/topo.png";
+    const imgtopom = imgtopo.replace("img/topo.png", "img/topom.png");
+
+    const imgtopox2 = "img/topox2.png";
+    const imgtopox2m = imgtopox2.replace("img/topox2.png", "img/topox2m.png");
+
+    const imgbombatopo = "img/topobomba.png";
+    const imgbombatopom = imgbombatopo.replace("img/topobomba.png", "img/topobombam.png");
+
+    // esto lo he recogido de chat GPT y lo he adaptado a mi código, me habia quedado pillada en la forma de rremplazar ua imgen por otra, 
+    //<img id="topoImg" src="${imgtopo}" alt=""> esta solución de Chat Gpt me ha hecho ver que tengo muchas mas posibilidades de las pensaba para jugar con lo elementos incluso si aún no se han creado o se crean insitu en el inicio del juego.
+
+
+    let Marcador = 
+    `<div id="topoClick" class="topo" style="grid-area: ${topoY} / ${topoX}">
+      <img id="topoImg" src="${imgtopo}" alt="">
+    </div> 
+    <div id="Topox2Click" class="topo" style="grid-area: ${Topox2Y} / ${Topox2X}">
+      <img id="topoX2Img" src="${imgtopox2}" alt="">
+    </div>
+    <div id="bombaClick" class="topo" style="grid-area: ${bombaY} / ${bombaX}">
+      <img id="topoBImg" src="${imgbombatopo}" alt="">
+    </div> 
+
+    <img src="img/tierra.png" alt="">
+    <img src="img/tierra.png" alt="">
+    <img src="img/tierra.png" alt="">
+    <img src="img/tierra.png" alt="">
+    <img src="img/tierra.png" alt="">
+    <img src="img/tierra.png" alt="">
+    <img src="img/tierra.png" alt="">
+    <img src="img/tierra.png" alt="">
+    <img src="img/tierra.png" alt="">
+    <img src="img/tierra.png" alt="">
+    <img src="img/tierra.png" alt="">
+    <img src="img/tierra.png" alt="">
+    <img src="img/tierra.png" alt="">`;
+    //el Marcador lo saqué de un tutorial del juego snake, que se usaba igual para la manzana.
+    //lo de la img de la tierra lo he hecho viendo que al meter el marcador me eliminaba del HTML los img que puse e introducia los del Marcador
 
 
     
 
-    // esto lo he recogido del juego de los círculos que realizamos en clase(aun no lo he escrito)
 
-
-    let Marcador = `<div id="topoClick"class="topo" style="grid-area: ${topoY} / ${topoX}"><img src="img/1459443.png" alt=""></div> <div id="falsoTopoClick"class="topo" style="grid-area: ${falsotopoY} / ${falsotopoX}"><img src="img/1459520.png" alt=""></div><div id="bombaClick"class="topo" style="grid-area: ${bombaY} / ${bombaX}"><img src="img/595582.png" alt=""></div>`;
     tablero.innerHTML = Marcador;
 
     //he solucioando la cuestion dde clickear el topo y que cuente como puntuación buscando en w3school las formas de utilizar el addeventlistener 
     //la solucion final es crear un div desde javascript con la variable "Marcador", y una vez creada llamar a ese mismo div en html mediante el id correspondiente.
     document.getElementById("topoClick").addEventListener("click", function() {
-        topoPosicion();
-        puntuacion+= 1;
+ 
+      const topoImg = document.getElementById("topoImg");
+      topoImg.src = imgtopom; 
+        puntuacion+= 15;
         elemPuntuacion.innerHTML = `Score: ${puntuacion}`;
         puntuacionMaxima = puntuacion >= puntuacionMaxima ? puntuacion : puntuacionMaxima;
         localStorage.setItem("puntaje-alto", puntuacionMaxima);
@@ -84,21 +162,35 @@ const inicio = () => {
         //la Score y el Highscore lo he buscado con el Chat Gpt y con ayuda de un videotutorial ya que esta parte la veía complicada, sobretodo colocar la High-Score.
       });
 
-      document.getElementById("falsoTopoClick").addEventListener("click", function() {
-        falsotopoPosicion();
-        puntuacion-= 1;
+      document.getElementById("Topox2Click").addEventListener("click", function() {
+      const topoX2Img = document.getElementById("topoX2Img");
+      topoX2Img.src = imgtopox2m; 
+        puntuacion+= 30;
         elemPuntuacion.innerHTML = `Score: ${puntuacion}`;
+        puntuacionMaxima = puntuacion >= puntuacionMaxima ? puntuacion : puntuacionMaxima;
+        localStorage.setItem("puntaje-alto", puntuacionMaxima);
+        elemPuntuacionMaxima.innerHTML = `High Score: ${puntuacionMaxima}`;
     
       });
 
       document.getElementById("bombaClick").addEventListener("click", function() {
+        const topobombaImg = document.getElementById("topoBImg");
+        topobombaImg.src = imgbombatopom; 
+        puntuacion -= 15, 
+        vidas -= 1;
+         elemPuntuacion.innerHTML = `Score: ${puntuacion}`
+         elemVidas.innerHTML = `🤍: ${vidas}`;
+
+      if(vidas == 0){
         gameOver = true;
         gameOverModal();
-      });
+      }
+
+    
+    });
 };
 
 botonModal.addEventListener("click", () => {
-  const quitarModal = document.getElementById("quitarModal");
   quitarModal.remove();//función del botón start
   setIntervalId = setInterval(inicio, 125);//aplicar el idi del inicio para comenzar el juego
   
@@ -107,12 +199,13 @@ botonModal.addEventListener("click", () => {
 
 
 bombaPosicion();
-falsotopoPosicion();
+Topox2Posición();
 topoPosicion();
-setInterval(bombaPosicion, 1180);
-setInterval(falsotopoPosicion, 1100);
+setInterval(bombaPosicion, 1000);
+setInterval(Topox2Posición, 1000);
 setInterval(topoPosicion, 1000);
 //inicio();
+
 
 
 

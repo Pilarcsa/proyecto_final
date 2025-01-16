@@ -3,9 +3,11 @@
     margin: 0%;
     box-sizing: border-box;
     font-family: sans-serif;
+    
 }
 
 body{
+   
     display: flex;
     align-items: center;
     justify-content: center;
@@ -52,13 +54,17 @@ body{
   
 }
 .tablero-juego{
-    width: 100%;
-    height: 100%;
+    display: block;
+    width: 65vmin;
+    height: 65vmin;
     display: grid;
-    grid-template: repeat(10, 1fr) / repeat(10, 1fr);
+    grid-template: repeat(4, 1fr) / repeat(4, 1fr);
     background: #ffffff0a;
     border: 1px solid #ffffff45;
     border-radius: 0 0 2% 2%;
+    justify-items: center;
+    align-items: center;
+
     
 }
 
@@ -70,27 +76,8 @@ body{
 .invisible{
     animation:eliminar 0.3s;
    animation-fill-mode: forwards;
-    /* pointer-events: none; ---> para juegos y q7ue no sea clickable*/
-}
-.tiempo{
-    width: 100%;
-    background-color: #fafafab6;
-    display: flex;
-    height: 10%;
-}
-.tiempo div{
-    height: 100%;
-    background-color: rgb(255, 0, 0);
-    margin: 0 10px;
 }
 
-.contenedor{
-    width: 600px;
-    border:5px solid white;
-    padding: 15PX 15px 0;
-    display: flex;
-    flex-wrap: wrap;
-}
 
 .modal{
     font-family:monospace;
@@ -106,7 +93,7 @@ body{
  
 }
 .modal button {
-    font-family:sans-serif;
+    font-family:s;
     font-size: 2.5em;
     padding: 2px 20px;
     border-radius: 12px;
@@ -138,6 +125,44 @@ body{
 }
 
 img{
-   height:100%;
-   width:100%;
+   height:10vmin;
+   width: auto;
+  
+}
+
+
+#divCuentaAtras{
+    float: right;
+    
+    width: 100%;
+    height: 20px;
+    background:linear-gradient(-120deg, #deb0df, #a16bfe, #c589ef, #7e3bf1);
+
+    
+}
+
+
+  @keyframes reducirBarra {
+    0% {
+      width: 100%; 
+    
+    }
+    50% {
+      width: 50%;
+    }
+    80% {
+      width: 20%; 
+    
+    }
+    100% {
+      width: 0%; /* Barra vacía al final */
+    
+    }
+  }
+
+.cursor{
+    width: 100px;
+    height: 100px;
+   background-image: url('martillo.png');
+   position: absolute;
 }
