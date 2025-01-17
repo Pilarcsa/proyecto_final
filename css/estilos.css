@@ -7,10 +7,11 @@
 }
 
 body{
-   
+    font-family: sans-serif;
+    color: white;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     min-height: 100vh;
     background: linear-gradient(-120deg, #deb0df, #a16bfe, #c589ef, #7e3bf1);
     background-size: 200% 200%;
@@ -93,8 +94,7 @@ body{
  
 }
 .modal button {
-    font-family:s;
-    font-size: 2.5em;
+    font-size: 3.1em;
     padding: 2px 20px;
     border-radius: 12px;
     cursor: pointer;
@@ -103,10 +103,9 @@ body{
     box-shadow: -11px 12px 20px 0px rgba(0, 0, 0, 0.37);
     color: white;
 }
-.modal p {
+.modal h1 {
     display: block;
     padding: 100px;
-    font-family:monospace;
     color: white;
     font-size: 4.1em;
     border-radius: 12px;
@@ -138,7 +137,6 @@ img{
     height: 20px;
     background:linear-gradient(-120deg, #deb0df, #a16bfe, #c589ef, #7e3bf1);
 
-    
 }
 
 
@@ -163,6 +161,22 @@ img{
 .cursor{
     width: 100px;
     height: 100px;
-   background-image: url('martillo.png');
+   background-image: url('martillo.webp');
    position: absolute;
+}
+
+.info{
+    width: 30vmin;
+    height: 40vmin;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.contenedor{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: center;
 }
