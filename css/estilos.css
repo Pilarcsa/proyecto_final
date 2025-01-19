@@ -128,9 +128,9 @@ body{
     padding: 2px 40px;
     border-radius: 12px;
     cursor: pointer;
-    border: 3px solid rgb(179, 0, 255);
+    border: 3px solid #b300ff;
     background: #ffffff;
-    color: rgb(179, 0, 255);
+    color: #b300ff;
 }
 
 .modal h1 {
