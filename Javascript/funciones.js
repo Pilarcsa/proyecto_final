@@ -188,6 +188,8 @@ const inicio = () =>{
         tImg.src = 'img/topom.webp';//sustituimos imagen del topo por el topo muerto 
         puntuacion+= 15;//sumamos 15 puntos a puntuación
         elemPuntuacion.innerHTML = `Score: ${puntuacion}`;//actualizar puntuación
+        puntuacionMaxima = puntuacion >= puntuacionMaxima ? puntuacion : puntuacionMaxima;
+        localStorage.setItem("puntaje-alto", puntuacionMaxima);
         elemPuntuacionMaxima.innerHTML = `High Score: ${puntuacionMaxima}`;//actualizar puntuación máxima
       },2000);//indicamos los ms para refrescar la función
 
@@ -199,6 +201,8 @@ const inicio = () =>{
         tX2Img.src = 'img/topox2m.webp';//sustituimos imagen del topo por el topo muerto
         puntuacion+= 30;//sumamos 30 puntos a puntuación
         elemPuntuacion.innerHTML = `Score: ${puntuacion}`;//actualizar puntuación
+        puntuacionMaxima = puntuacion >= puntuacionMaxima ? puntuacion : puntuacionMaxima;
+        localStorage.setItem("puntaje-alto", puntuacionMaxima);
         elemPuntuacionMaxima.innerHTML = `High Score: ${puntuacionMaxima}`;//actualizar puntuación máxima
       },2000); //indicamos los ms para refrescar la función
       
