@@ -1,3 +1,14 @@
+<!---
+index.html:
+- estructura básica del documento HTML Y enlace de estilos y fuentes
+- contenedor principal con secciones del juego
+- envoltorio del juego con detalles, tablero y barra de tiempo
+- sección de información con imágenes y puntajes
+- modal de inicio del juego
+- cursor personalizado
+- enlace al script de funciones
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,35 +16,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/estilos.css">
-  
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 </head>
+<!--- estructura básica del documento HTML Y enlace de estilos y fuentes -->
 <body>  
     <section class="contenedor">
-  
+  <!--- contenedor principal con secciones del juego -->
     <section class="envoltorio">
+      <!--- envoltorio del juego con detalles, tablero y barra de tiempo -->
         <div class="detalles-juego">
             <div class="puntaje">Score: 0</div>
             <div class="puntaje-alto">High Score: 0</div>
             <div class="vidas">🤍: 3</div>
         </div> 
         <div class="tablero-juego"></div> 
-        <div id="divCuentaAtras"></div>  
+        <div id="IdbarraTiempo"></div>  
         
     </section>
     <section class="info">
+    <!--- sección de información con imágenes y puntOS de cada elemento -->
       <div class="info"><img src="img/topo.webp" alt=""><p>15 ptos.</p></div>
       <div class="info"><img src="img/topox2.webp" alt=""><p>30 ptos.</p></div>
-      <div class="info"><img src="img/topobomba.webp" alt=""><p>-15 ptos. / -1 🤍</p></div>
+      <div class="info"><img src="img/topobomba.webp" alt=""><p>-15 ptos. and -1 🤍</p></div>
     </section>
 
     </section>
    
    
-        <div class="modal" id="modalId">
-         <h1>Juego del topo</h1>
+    <div class="modal" id="modalId">
+     <!--- modal de inicio del juego -->
+         <h1>Whack a Mole</h1>
         <button>start</button>
     </div>
  <div class="cursor"></div>
+ <!--- cursor personalizado -->
     <script src="Javascript/funciones.js"></script>
+     <!--- enlace al script de funciones -->
 </body>
 </html>

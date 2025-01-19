@@ -1,24 +1,39 @@
+/*
+    estilos.css
+    - estilos globales y configuración inicial
+    - body y estilos del documento 
+    - animación del body
+    - estilos de los contenedores
+    - modal y elementos dentro de la ventana emergente
+    - barra de tiempo y animación asociada
+    - cursor personalizado
+    - estilos de imágenes
+    - estilos responsivos (modo retrato)
+*/
+
+/*__  estilos globales y configuración inicial    __*/
 *{
     padding: 0%;
     margin: 0%;
-    box-sizing: border-box;
-    font-family: sans-serif;
-    
+    box-sizing: border-box; 
 }
+/*__  estilos globales y configuración inicial    __*/
 
-body{
-    font-family: sans-serif;
-    color: white;
+/*__  body y estilos del documento     __*/
+body{    
+    font-family: "DM Sans", serif;/*estilo de la fuente del juego*/
+    color: white;/*color de la tipo*/
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     min-height: 100vh;
-    background: linear-gradient(-120deg, #deb0df, #a16bfe, #c589ef, #7e3bf1);
+    background: linear-gradient(-120deg, #deb0df, #a16bfe, #c589ef, #7e3bf1);/*estilo de paleta del juego*/
     background-size: 200% 200%;
     flex-direction: column;
     animation: color 12s ease-in-out infinite;
+    overflow: hidden;
 }
-
+/*__  animación del body    __*/
 @keyframes color{
     0%{
         background-position: 0% 50%;
@@ -30,6 +45,16 @@ body{
         background-position: 0% 50%;
     }
 }
+/*__  animación del body     __*/
+
+/*__  estilos de los contenedores   __*/
+
+.contenedor{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: center;
+}
 
 .envoltorio {
     width: 65vmin;
@@ -40,9 +65,7 @@ body{
     border-radius: 2%;
     border: 3px solid #fafafa10;
     background: #fafafa10;
-    box-shadow: -11px 12px 20px 0px rgba(0, 0, 0, 0.37) ;
-  
-
+    box-shadow: -11px 12px 20px 0px rgba(0, 0, 0, 0.37);
 }
 
 .detalles-juego{
@@ -54,6 +77,7 @@ body{
    justify-content: space-between;
   
 }
+
 .tablero-juego{
     display: block;
     width: 65vmin;
@@ -65,46 +89,50 @@ body{
     border-radius: 0 0 2% 2%;
     justify-items: center;
     align-items: center;
-
-    
 }
 
+.info{
+    width: 30vmin;
+    height: 40vmin;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
+/*__  estilos de los contenedores   __*/
+
+/*__  cursor elementos interactivos  __*/
 .topo{
     cursor: pointer;
+    height:10vmin;
+    width: auto;
     
 }
+/*__  cursor elementos interactivos  __*/
 
-
-.invisible{
-    animation:eliminar 0.3s;
-   animation-fill-mode: forwards;
-}
-
-
+/*__  modal y elementos dentro de la ventana emergente  __*/
 .modal{
-    font-family:monospace;
     width: 100%;
     height: 100vh;
     position: fixed;
     backdrop-filter: blur(2.5em);
     display: flex;
     flex-direction: column;
-    justify-content:space-evenly;
+    justify-content:center;
     align-items: center;
-    
- 
 }
+
 .modal button {
     font-size: 3.1em;
-    padding: 2px 20px;
+    font-weight: 500;
+    padding: 2px 40px;
     border-radius: 12px;
     cursor: pointer;
-    border: 3px solid #fafafa10;
-    background: #fafafa10;
-    box-shadow: -11px 12px 20px 0px rgba(0, 0, 0, 0.37);
-    color: white;
+    border: 3px solid rgb(179, 0, 255);
+    background: #ffffff;
+    color: rgb(179, 0, 255);
 }
+
 .modal h1 {
     display: block;
     padding: 100px;
@@ -112,34 +140,23 @@ body{
     font-size: 4.1em;
     border-radius: 12px;
 }
+/*__  modal y elementos dentro de la ventana emergente  __*/
 
-@keyframes eliminar{
-    0%{
-        opacity:1;
-    }100%{ 
-        opacity:0;
-    }
-}
-.desaparece{
-    animation:eliminar 0.2s;
-    animation-fill-mode: forwards;
-}
-
+/*__  estilos de imágenes  __*/
 img{
    height:10vmin;
    width: auto;
 }
+/*__  estilos de imágenes  __*/
 
+/*__  barra de tiempo y animación asociada  __*/
 
-#divCuentaAtras{
+#IdbarraTiempo{
     float: right;
-    
     width: 100%;
     height: 20px;
     background:linear-gradient(-120deg, #deb0df, #a16bfe, #c589ef, #7e3bf1);
-
 }
-
 
   @keyframes reducirBarra {
     0% {
@@ -159,24 +176,9 @@ img{
     }
   }
 
+/*__  barra de tiempo y animación asociada  __*/
 
-.info{
-    width: 30vmin;
-    height: 40vmin;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-
-.contenedor{
-    display: flex;
-    align-items: flex-start;
-    width: 100%;
-    justify-content: center;
-}
-
-
+/*__  cursor  __*/
 .cursor{
     width: 50px;
     height: 50px;
@@ -191,3 +193,76 @@ img{
 .activo{
     transform: rotate(25deg);
 }
+/*__  cursor  __*/
+
+/*__  estilos responsivos (modo retrato)  __*/
+
+@media only screen and (orientation:portrait){
+    .envoltorio {
+        width: 95vmin;
+        height: 110vmin;
+    }
+    .tablero-juego{
+        width: 95vmin;
+        height: 95vmin;
+    }
+    img{
+        height:20vmin;
+        width: auto;
+     }
+    .cursor{
+       background: none;
+    }
+    .contenedor{
+      
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    
+  
+
+    .detalles-juego{
+     
+        font-size: 0.8rem;
+      
+    }
+    
+    
+    .info {
+        width: 75vmin;
+        height: 20vmin;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: center;
+        font-size:  0.8rem;
+    }
+    
+    .modal {
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        backdrop-filter: blur(2.5em);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal h1 {
+        display: block;
+        padding: 0;
+        margin-bottom: 100px;
+        color: white;
+        font-size: 3.1em;
+        border-radius: 12px;
+    }
+}
+/*__  estilos responsivos (modo retrato)  __*/
+
+
+
+
